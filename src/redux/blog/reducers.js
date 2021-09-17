@@ -25,7 +25,7 @@ const initialStatePosts = {
 export const requestPosts = (state = initialStatePosts, action = {}) => {
   switch (action.type) {
     case REQUEST_POST_PENDING:
-      return Object.assign({}, state, { isPending: true });
+      return Object.assign({}, state, { isPending: true, success: false });
 
     case REQUEST_POST_SUCCESS:
       return Object.assign({}, state, {
