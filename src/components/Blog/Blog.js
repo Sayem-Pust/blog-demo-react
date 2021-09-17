@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import image from "../../assets/book.jpg";
 
-export default function Product({ id, title, description }) {
+export default function Product({ id, title, description, image }) {
   return (
     <article className="post">
       <div className="img-container">
