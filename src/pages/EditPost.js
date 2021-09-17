@@ -52,7 +52,7 @@ function EditPost() {
   return (
     <section className="form section">
       {errorMessage}
-      <h2 className="section-title">Create Post</h2>
+      <h2 className="section-title">Edit Post</h2>
       <form className="login-form">
         <div className="form-control">
           <label htmlFor="title">Title</label>
