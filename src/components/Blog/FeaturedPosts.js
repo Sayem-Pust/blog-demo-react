@@ -14,6 +14,8 @@ export default function FeaturedPosts() {
 
   const { posts, isPending } = state;
 
+  console.log(isPending);
+
   if (isPending) {
     return <Loading />;
   }

@@ -1,16 +1,20 @@
 import React, { useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
+import { useSelector, useDispatch  } from "react-redux";
 import { requestPosts } from "../redux/blog/actions";
 import Loading from "../components/Loading";
 import image from "../assets/book.jpg";
 
 function ProductDetails({
-  onRequestPosts,
-  postState,
+  // onRequestPosts,
+  // postState,
 }) {
+  const dispatch = useDispatch()
+  const postState = useSelector((state) => state.requestPosts);
+  console.log(postState);
   useEffect(() => {
-    onRequestPosts();
+    dispatch(requestPosts());
   }, []);
   const { id } = useParams();
   const history = useHistory();
@@ -19,7 +23,7 @@ function ProductDetails({
   if (posts.length === 0) {
     return <Loading />;
   } else {
-    const { title, description } = post;
+    const { title, description, id } = post;
     return (
       <div>
         <section className="single-post">
@@ -36,20 +40,20 @@ function ProductDetails({
             >
               Back to posts
             </button>
+              <br></br>
+            <button
+              className="btn btn-primary btn-block"
+              onClick={() => {
+                history.push(`/blog/edit/${id}`);
+              }}
+            >
+              Edit Post
+            </button>
           </article>
         </section>
       </div>
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    postState: state.requestPosts,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onRequestPosts: () => dispatch(requestPosts()),
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);
+
+export default ProductDetails;
